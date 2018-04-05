@@ -14,5 +14,5 @@ You can download them by running this command while being in ANNS directory:</br
 `pip install -r requirements.txt`
 
 Then, to run the server:</br>
-`python server.py`
+`python server.py`</br>
 That's it! ANNS should now be running on your machine, just open http://127.0.0.1:5000/ in your browser to start working with it.
