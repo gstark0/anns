@@ -10,9 +10,12 @@ In order to run ANNS, you will need the following dependencies:
 - Flask==0.12.2
 - tensorflow==1.0.1
 
-You can download them by running this command while being in ANNS directory:</br>
-`pip install -r requirements.txt`
+You can download them by running this command while being in ANNS directory:
 
-Then, to run the server:</br>
-`python server.py`</br>
+    pip install -r requirements.txt
+
+Then, to run the server:
+
+    python server.py
+
 That's it! ANNS should now be running on your machine, just open http://127.0.0.1:5000/ in your browser to start working with it.
