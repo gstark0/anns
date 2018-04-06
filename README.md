@@ -1,4 +1,4 @@
-# Awesome Neural Network Simulator v0.01 (ANNS) [Work In Progress]
+# Awesome Neural Network Simulator v0.1 (ANNS) [WIP]
 
 <h4>Overview</h4>
 
