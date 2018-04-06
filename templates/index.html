@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="../static/lib/css/style.css">
+    <link rel="stylesheet" href="../static/lib/ext/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/lib/ext/font-awesome/css/fontawesome-all.min.css">
+</head>
+    
+<body>
+    <div class="modal fade" id="trainingModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 style="margin: 0;">Training...</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 sidebar">
+                <div class="sidebar-nav-fixed affix">
+                    <div class="well">
+                        <form>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <div class="form-group">
+                                        <label for="input-layer">Input Layer</label>
+                                        <input class="form-control" type="number" value="2" min="0" max="1000" id="input-layer">
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <div class="form-group">
+                                        <label for="n-hidden-layers">Hidden Layers</label>
+                                        <input class="form-control" onchange="hiddenLayersNodes()" type="number" value="0" min="0" max="10" id="n-hidden-layers">
+
+                                        <div id="hidden-nodes"></div>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <div class="form-group">
+                                        <label for="output-layer">Output Layer</label>
+                                        <input class="form-control" type="number" value="2" min="1" max="1000" id="output-layer" disabled>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <div class="form-group">
+                                        <label for="learning-rate">Learning Rate</label>
+                                        <select class="form-control" id="learning-rate">
+                                            <option>0.00001</option>
+                                            <option>0.0001</option>
+                                            <option>0.001</option>
+                                            <option>0.003</option>
+                                            <option selected>0.01</option>
+                                            <option>0.03</option>
+                                            <option>0.1</option>
+                                            <option>0.3</option>
+                                            <option>1</option>
+                                            <option>3</option>
+                                            <option>10</option>
+                                        </select>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <div class="form-group">
+                                        <label for="activation">Activation</label>
+                                        <select class="form-control" id="activation">
+                                            <option>ReLU</option>
+                                            <option selected>Tanh</option>
+                                            <option>Sigmoid</option>
+                                            <option>Linear</option>
+                                        </select>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <div class="form-group">
+                                        <label for="problem-type">Problem Type</label>
+                                        <select class="form-control" id="problem-type">
+                                            <option selected>Classification</option>
+                                            <option>Regression</option>
+                                        </select>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <button type="button" class="btn btn-primary" onclick="generateModel()">Generate</button>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div id="cy"></div>
+            </div>
+            
+            <div class="col-md-3 sidebar">
+                <div class="sidebar-nav-fixed pull-right affix">
+                    <div class="well">
+                        <ul class="nav flex-column">
+                            <li>
+                                <div class="form-group">
+                                    <label for="epochs">Epochs</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="number" value="100" min="2" max="100000" id="epochs">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-secondary" id="epoch-train" onclick="epochTrain()">
+                                                Run
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <p>Total Loss: <span class="value" id="total-loss">0</span></p>
+                                <p>Accuracy: <span class="value" id="accuracy">0</span></p>
+                            </li>
+                            
+                            <li>
+                                <canvas id="stats-chart"></canvas>
+                            </li>
+                            
+                            <li>
+                                <canvas id="loss-chart"></canvas>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../static/lib/ext/jquery-3.3.1.min.js"></script>
+    <script src="../static/lib/ext/bootstrap.min.js"></script>
+    <script src="../static/lib/ext/cytoscape.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script>
+        var chartData = JSON.parse('{{data|safe}}');
+    </script>
+    <script src="../static/lib/visualizer.js"></script>
+</body>
+</html>
